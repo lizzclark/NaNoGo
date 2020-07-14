@@ -14,8 +14,10 @@ struct ContentView: View {
         NavigationView {
             TextEditor(text: $text)
                 .foregroundColor(.black)
-                .background(Color(red: 1, green: 0.9, blue: 1))
+                .background(Color(red: 0.9, green: 0.9, blue: 1))
                 .navigationTitle("Start writing...")
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .padding()
         }
         .onAppear {
             UITextView.appearance().backgroundColor = .clear
