@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var text = ""
+    
     var body: some View {
-        Text("Hello, world!").padding()
+        NavigationView {
+            TextEditor(text: $text)
+                .foregroundColor(.black)
+                .background(Color(red: 1, green: 0.9, blue: 1))
+                .navigationTitle("Start writing...")
+        }
+        .onAppear {
+            UITextView.appearance().backgroundColor = .clear
+        }
     }
 }
 
