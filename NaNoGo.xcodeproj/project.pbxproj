@@ -11,6 +11,7 @@
 		85B51D9924BE035F00476DFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B51D9824BE035F00476DFB /* ContentView.swift */; };
 		85B51D9B24BE036000476DFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85B51D9A24BE036000476DFB /* Assets.xcassets */; };
 		85B51D9E24BE036000476DFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85B51D9D24BE036000476DFB /* Preview Assets.xcassets */; };
+		85B51DBC24BF0C4C00476DFB /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B51DBB24BF0C4C00476DFB /* UserDefaults+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		85B51D9A24BE036000476DFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85B51D9D24BE036000476DFB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		85B51D9F24BE036000476DFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85B51DBB24BF0C4C00476DFB /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 		85B51D9524BE035F00476DFB /* NaNoGo */ = {
 			isa = PBXGroup;
 			children = (
+				85B51DBA24BF0C3C00476DFB /* Extensions */,
 				85B51D9624BE035F00476DFB /* NaNoGoApp.swift */,
 				85B51D9824BE035F00476DFB /* ContentView.swift */,
 				85B51D9A24BE036000476DFB /* Assets.xcassets */,
@@ -67,6 +70,14 @@
 				85B51D9D24BE036000476DFB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		85B51DBA24BF0C3C00476DFB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				85B51DBB24BF0C4C00476DFB /* UserDefaults+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85B51D9924BE035F00476DFB /* ContentView.swift in Sources */,
+				85B51DBC24BF0C4C00476DFB /* UserDefaults+Extensions.swift in Sources */,
 				85B51D9724BE035F00476DFB /* NaNoGoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
