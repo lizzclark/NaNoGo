@@ -16,17 +16,18 @@ extension String {
 }
 
 struct ContentView: View {
-    @SceneStorage("text") private var text = ""
+    @Binding var document: TextFile
     @AppStorage("fontSize") private var fontSize = 16
     @State private var background: Color
     @State private var foreground: Color
     @AppStorage("wordsWritten") private var wordsWritten = 0
     
-    init() {
+    init(document: Binding<TextFile>) {
         let foregroundColor = UserDefaults.standard.color(forKey: String.Key.foregroundColor) ?? .black
         let backgroundColor = UserDefaults.standard.color(forKey: String.Key.backgroundColor) ?? .white
         _foreground = State(wrappedValue: foregroundColor)
         _background = State(wrappedValue: backgroundColor)
+        _document = document
     }
     
     var body: some View {
@@ -37,7 +38,7 @@ struct ContentView: View {
                 ColorPicker("Text colour", selection: $foreground)
                 ColorPicker("Background colour", selection: $background)
                     .padding(.bottom, 12)
-                TextEditor(text: $text)
+                TextEditor(text: $document.text)
                     .font(.system(size: CGFloat(fontSize)))
                     .foregroundColor(foreground)
                     .background(background)
@@ -53,14 +54,12 @@ struct ContentView: View {
             ToolbarItem(placement: ToolbarItemPlacement.bottomBar) {
                 HStack {
                     Button {
-                        guard text != "" else { return }
                         fontSize -= 4
                     } label: {
                         Image(systemName: "minus.circle")
                     }
                     Text("Font Size")
                     Button {
-                        guard text != "" else { return }
                         fontSize += 4
                     } label: {
                         Image(systemName: "plus.circle")
@@ -75,7 +74,7 @@ struct ContentView: View {
         .onChange(of: foreground) { color in
             UserDefaults.standard.set(color, forKey: String.Key.foregroundColor)
         }
-        .onChange(of: text) { text in
+        .onChange(of: document.text) { text in
             wordsWritten = text.components(separatedBy: .whitespacesAndNewlines).filter{ $0.isEmpty == false }.count
         }
     }
@@ -83,6 +82,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(document: .constant(TextFile()))
     }
 }

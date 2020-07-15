@@ -10,9 +10,8 @@ import SwiftUI
 @main
 struct NaNoGoApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .defaultAppStorage(UserDefaults(suiteName: "com.nanogo.lizz")!)
+        DocumentGroup(newDocument: TextFile()) { file in
+            ContentView(document: file.$document)
         }
     }
 }
