@@ -12,6 +12,7 @@ struct NaNoGoApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .defaultAppStorage(UserDefaults(suiteName: "com.nanogo.lizz")!)
         }
     }
 }

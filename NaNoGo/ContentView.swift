@@ -16,18 +16,16 @@ extension String {
 }
 
 struct ContentView: View {
-    @SceneStorage("ContentView.text") private var text = ""
-    @State private var fontSize: CGFloat = 16
+    @SceneStorage("text") private var text = "Sphinx of black quartz, judge my vow"
+    @AppStorage("fontSize") private var fontSize = 16
     @State private var background: Color
     @State private var foreground: Color
-    
+
     init() {
         let foregroundColor = UserDefaults.standard.color(forKey: String.Key.foregroundColor) ?? .black
         let backgroundColor = UserDefaults.standard.color(forKey: String.Key.backgroundColor) ?? .white
-        let size = UserDefaults.standard.double(forKey: String.Key.fontSize)
         _foreground = State(wrappedValue: foregroundColor)
         _background = State(wrappedValue: backgroundColor)
-        _fontSize = State(wrappedValue: CGFloat(max(size, 16.0)))
     }
     
     var body: some View {
@@ -37,7 +35,7 @@ struct ContentView: View {
                 ColorPicker("Background colour", selection: $background)
                     .padding(.bottom, 12)
                 TextEditor(text: $text)
-                    .font(.system(size: fontSize))
+                    .font(.system(size: CGFloat(fontSize)))
                     .foregroundColor(foreground)
                     .background(background)
                     .navigationTitle("NaNoGo")
@@ -73,9 +71,6 @@ struct ContentView: View {
         }
         .onChange(of: foreground) { color in
             UserDefaults.standard.set(color, forKey: String.Key.foregroundColor)
-        }
-        .onChange(of: fontSize) { size in
-            UserDefaults.standard.setValue(Double(size), forKey: String.Key.fontSize)
         }
     }
 }
