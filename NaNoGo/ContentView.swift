@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var text = ""
+    @SceneStorage("ContentView.text") private var text = ""
     
     var body: some View {
         NavigationView {
@@ -19,6 +19,7 @@ struct ContentView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 .padding()
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             UITextView.appearance().backgroundColor = .clear
         }
