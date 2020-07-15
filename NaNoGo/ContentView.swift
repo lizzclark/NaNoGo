@@ -16,11 +16,12 @@ extension String {
 }
 
 struct ContentView: View {
-    @SceneStorage("text") private var text = "Sphinx of black quartz, judge my vow"
+    @SceneStorage("text") private var text = ""
     @AppStorage("fontSize") private var fontSize = 16
     @State private var background: Color
     @State private var foreground: Color
-
+    @AppStorage("wordsWritten") private var wordsWritten = 0
+    
     init() {
         let foregroundColor = UserDefaults.standard.color(forKey: String.Key.foregroundColor) ?? .black
         let backgroundColor = UserDefaults.standard.color(forKey: String.Key.backgroundColor) ?? .white
@@ -31,6 +32,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
+                ProgressView("Word count: \(wordsWritten)", value: min(200, Double(wordsWritten)), total: 200)
+                    .accentColor(foreground)
                 ColorPicker("Text colour", selection: $foreground)
                 ColorPicker("Background colour", selection: $background)
                     .padding(.bottom, 12)
@@ -71,6 +74,9 @@ struct ContentView: View {
         }
         .onChange(of: foreground) { color in
             UserDefaults.standard.set(color, forKey: String.Key.foregroundColor)
+        }
+        .onChange(of: text) { text in
+            wordsWritten = text.components(separatedBy: .whitespacesAndNewlines).filter{ $0.isEmpty == false }.count
         }
     }
 }
